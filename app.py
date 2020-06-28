@@ -26,7 +26,7 @@ def weather():
     if request.method == 'POST':
         location = request.form['city']
     else:
-        location = 'chennai'
+        location = 'chennai'#default city = chennai
     from datetime import datetime, timedelta
     #geting value from db
     weather_value=get_value(location)
