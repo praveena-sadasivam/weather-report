@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="data:,">
+  <title>invalid input</title>
+  <link href="{{ url_for('static',filename='css/weather.css')}}" rel="stylesheet" type="text/css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+  <style>
+      body {
+  
+  margin: 0 auto;
+  color: #161616;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  background-color: currentColor;
+}
+
+h1 {
+  margin-bottom: 1.375em;
+  color:whitesmoke;
+  font-weight: 100;
+  font-size: 10000;
+  text-transform: uppercase;
+  text-align:center
+}
+.monospace {
+  font-family: "Lucida Console", Courier, monospace;
+}
+  </style>
+  <script>
+    function goBack() {
+      window.history.back();
+    }
+    </script>
+
+ 
+    <body>
+        <h1  class="monospace" >invalid user input or city name not found ! </h1>
+        <br>
+        <br>
+        <img src="{{url_for('static', filename='images/invalid.jpg')}}" align="middle" width="200" height="200">
+        <br>
+        <br>
+        <button onclick="goBack()">Go Back</button>
+    </body>
+   
+    
+</html>
