@@ -37,19 +37,32 @@ def weather():
         now = datetime.now()
         #checking if value is one day older
         #if within 24 hrs then
+        print("2")
         if now-timedelta(hours=24) <= old <= now+timedelta(hours=24):
+            print("3")
             description=weather_value[0][0]
             temp=weather_value[0][1]
             print("\n WEATHER REPORT updated using DB")
-    else:
+        
+        else:
         #if more than one day then  get value from app
+            print("3")
+            value=get_weather(location)
+            description=value[0]
+            temp=value[1]
+            time=value[2]
+            insert_into_weather(location,description,temp,time)
+            print("\n WEATHER REPORT updated using app")
+    else:
+        
+        print("3")
         value=get_weather(location)
         description=value[0]
         temp=value[1]
         time=value[2]
         insert_into_weather(location,description,temp,time)
         print("\n WEATHER REPORT updated using app")
-    print("\nweather report - "+"\nlocation : "+str(location)+"\ndescription : "+str(description)+"\ntemperature : "+str(temp)+"\n")
+    print("\nweather report - "+"\nlocation : "+str(location)+"\n description : "+str(description)+"\ntemperature : "+str(temp)+"\n")
     return render_template("weather.html",location=location,description=description,temp=temp) 
 
 
