@@ -37,9 +37,7 @@ def weather():
         now = datetime.now()
         #checking if value is one day older
         #if within 24 hrs then
-        print("2")
         if now-timedelta(hours=24) <= old <= now+timedelta(hours=24):
-            print("3")
             description=weather_value[0][0]
             temp=weather_value[0][1]
             print("\n WEATHER REPORT updated using DB")
