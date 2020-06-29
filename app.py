@@ -43,8 +43,7 @@ def weather():
             print("\n WEATHER REPORT updated using DB")
         
         else:
-        #if more than one day then  get value from app
-            print("3")
+            #if value is one day older
             value=get_weather(location)
             description=value[0]
             temp=value[1]
@@ -52,8 +51,7 @@ def weather():
             insert_into_weather(location,description,temp,time)
             print("\n WEATHER REPORT updated using app")
     else:
-        
-        print("3")
+        #getting value for first time
         value=get_weather(location)
         description=value[0]
         temp=value[1]
