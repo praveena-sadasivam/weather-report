@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="data:,">
+  <title>weather report</title>
+  <link href="{{ url_for('static',filename='css/weather.css')}}" rel="stylesheet" type="text/css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<style>
+  body {
+  
+  margin: 0 auto;
+  color: #161616;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  
+  background-color: currentColor;
+}
+h4 {
+    margin-bottom: 1.375em;
+    color:whitesmoke;
+    font-weight: 20;
+    font-size: 100;
+    font-family: "Lucida Console", Courier, monospace;
+    
+  }
+img {
+  border-radius: 8px;
+}
+p { margin: 1.375rem 0; 
+  color: white;
+  font-family: "Lucida Console", Courier, monospace;
+  font-weight: 30;
+  font-size: 100;
+}
+form {
+  text-align: center;
+  display: inline-block;
+}
+
+.a{
+  text-align: center;
+
+}
+</style>
+
+<body>
+  
+<div class="container">
+    <div class='text-center'>
+		<h1>WEATHER REPORT</h1>
+    </div>
+    
+    <center class="row row justify-content-center">
+      <!-- form to get city name as input from user -->
+      <br>
+        <form method="post" class="col-md-6 col-md-offset-3 ">
+          <div class="input-group ">
+            <input type="text" class="form-control" name="city" placeholder="Enter city" >
+            
+            <div class="input-group-btn">
+              <button class="btn btn-primary" type="submit">
+                <i class="glyphicon glyphicon-search"></i>search
+              </button>
+            </div>
+            <form>
+      </center>
+        <br>
+        {% if location %}
+    </form>
+    <table class="table table-bordered table-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th>city</th>
+                <th>weather description</th>
+                <th>temperature(in kelvin)</th>
+                <th>temperature(in celsius)</th>
+            </tr>
+        </thead>
+        <thead class="thead-light">
+            <tr>
+                <td ><p>{{location}}</p></td>
+                <td><p>{{description}}</p></td>
+                <td><p>{{temp}}</p></td>
+                <td><p>{{temp_celsius}}°C</p></td>
+            </tr>
+        </thead>
+    </table>
+<!-- for animation -->
+{% if "sun" in description and "rain" in description %}
+    <div class="icon sun-shower">
+      <div class="cloud"></div>
+      <div class="sun">
+        <div class="rays"></div>
+      </div>
+      <div class="rain"></div>
+    </div>
+    <h4> Rain that falls during a sun shower brings good luck ! </h4>
+    <img src="{{url_for('static', filename='images/sunshower.jpg')}}" align="middle" width="200" height="200">
+
+  {% elif "thunder" in description or "storm" in description or "lightning" in description %}
+    <div class="icon thunder-storm">
+      <div class="cloud"></div>
+      <div class="lightning">
+        <div class="bolt"></div>
+        <div class="bolt"></div>
+      </div>
+    </div>
+    <h4>hey user! if you are in {{location}}, its thundering and lightening outside stay safe ! </h4>
+    <img src="{{url_for('static', filename='images/thunder.jpg')}}" align="middle" width="200" height="200">
+
+  {% elif "cloud" in description  %}
+    <div class="icon cloudy">
+      <div class="cloud"></div>
+      <div class="cloud"></div>
+    </div>
+    <h4>hey user! if you are in {{location}}, its a cloudy day! </h4>
+    <img src="{{url_for('static', filename='images/cloudy.jpg')}}" align="middle" width="200" height="200">
+
+  {% elif "clear" in description %}
+    <div class="icon sunny">
+      <div class="sun">
+        <div class="rays"></div>
+      </div>
+    </div>
+    <h4>hey user! if you are in {{location}}, its a sunny day</h4>
+    <img src="{{url_for('static', filename='images/sunny.jpg')}}" align="middle" width="200" height="200">
+
+  {% elif "rain" in description %}
+    <div class="icon rainy">
+      <div class="cloud"></div>
+      <div class="rain"></div>
+    </div>
+    <h4>hey user! if you are in {{location}}, its rainig outside don't forget to take umbrella with you </h4>
+    <img src="{{url_for('static', filename='images/rain.jpg')}}" align="middle" width="200" height="200">
+
+  {% elif "flurries" in description or "snow" in description %}
+    <div class="icon flurries">
+      <div class="cloud"></div>
+      <div class="snow">
+        <div class="flake"></div>
+        <div class="flake"></div>
+      </div>
+    </div>
+    <img src="{{url_for('static', filename='images/flurries.jpg')}}" align="middle" width="200" height="200">
+
+    {%else%}
+    <div>
+      <img src="{{url_for('static', filename='images/all.jpg')}}" align="middle" width="200" height="200">
+    </div>
+  {% endif %}
+  {% else %}
+</div>
+<div class="icon sun-shower">
+  <div class="cloud"></div>
+  <div class="sun">
+    <div class="rays"></div>
+  </div>
+  <div class="rain"></div>
+</div>
+
+<div class="icon thunder-storm">
+  <div class="cloud"></div>
+  <div class="lightning">
+    <div class="bolt"></div>
+    <div class="bolt"></div>
+  </div>
+</div>
+
+<div class="icon cloudy">
+  <div class="cloud"></div>
+  <div class="cloud"></div>
+</div>
+
+<div class="icon flurries">
+  <div class="cloud"></div>
+  <div class="snow">
+    <div class="flake"></div>
+    <div class="flake"></div>
+  </div>
+</div>
+
+<div class="icon sunny">
+  <div class="sun">
+    <div class="rays"></div>
+  </div>
+</div>
+
+<div class="icon rainy">
+  <div class="cloud"></div>
+  <div class="rain"></div>
+</div>
+<br>
+<br>
+<div>
+  <img src="{{url_for('static', filename='images/weather.jpg')}}" align="middle" width="300" height="300">
+</div>
+</body>
+</html>
+
+  {%endif%}
