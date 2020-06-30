@@ -50,9 +50,9 @@ form {
 </style>
 <script>
   function validateForm() {
-    var x = document.forms["city"].value;
+    var x = document.forms["myForm"]["city" ].value;
     if (x == "" || x == null) {
-      alert("city name must be filled out");
+      alert("input must be given");
       return false;
     }
   }
